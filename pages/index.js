@@ -6,9 +6,12 @@ import OutputBox from "../components/outputbox";
 
 export default function Home() {
   return (
-    <div>
-      <InputBox />
-      <OutputBox />
-    </div>
+    <>
+      <div className="flex flex-row  justify-evenly min-h-screen py-2 w-full ">
+        <InputBox />
+
+        <OutputBox />
+      </div>
+    </>
   );
 }

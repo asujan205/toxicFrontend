@@ -4,7 +4,7 @@ const InputBox = () => {
   const [Loading, setLoading] = useState(false);
   return (
     <>
-      <div className="flex   flex-col  max-w-[500px] min-h-[500px] m-10 border  border-solid rounded-s-xl		 border-cyan-500">
+      <div className="flex   flex-col  min-w-[500px] min-h-[500px] m-10 border  border-solid rounded-xl		 border-cyan-500">
         <label html-for="chat" className="sr-only">
           Your message
         </label>
