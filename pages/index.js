@@ -40,7 +40,7 @@ export default function Home() {
           handleComment={handleComment}
           handleInputChange={handleInputChange}
         />
-        {output}
+
         {output && <OutputBox data={output} />}
       </div>
     </>

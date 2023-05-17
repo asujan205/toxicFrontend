@@ -42,7 +42,7 @@ def score_comment():
     for idx, col in enumerate(df.columns[2:]):
         result_object[col] = bool(results[0][idx] > 0.5)
 
-    return jsonify({'result': result_object})
+    return result_object
     # comment = request.json['comment']
     
     # # Execute the Python script and capture the output
