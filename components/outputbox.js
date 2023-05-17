@@ -8,30 +8,72 @@ const OutputBox = ({ data }) => {
 
   return (
     <div className="flex flex-col max-w-[500px] min-h-[500px] m-10 border bg-stone-200 border-solid rounded-xl border-cyan-500 transform transition-transform hover:scale-95">
-      <div className="p-5">
-        <p className="text-2xl font-bold">
-          Toxic: {data.toxic ? "TRUE" : "FALSE"}
-        </p>
-        <p className="text-2xl font-bold ml-5">
-          Severe Toxic: {data.severe_toxic ? "TRUE" : "FALSE"}
-        </p>
-      </div>
-      <div className="p-5">
-        <p className="text-2xl font-bold">
-          Obscene: {data.obscene ? "TRUE" : "FALSE"}
-        </p>
-        <p className="text-2xl font-bold ml-5">
-          Threat: {data.threat ? "TRUE" : "FALSE"}
-        </p>
-      </div>
-      <div className="p-5">
-        <p className="text-2xl font-bold">
-          Insult: {data.insult ? "TRUE" : "FALSE"}
-        </p>
-        <p className="text-2xl font-bold ml-5">
-          Identity Hate: {data.identity_hate ? "TRUE" : "FALSE"}
-        </p>
-      </div>
+      {data.toxic ? (
+        <div className="p-5  bg-red-800">
+          <p className="text-2xl font-bold">
+            Toxic: {data.toxic ? "TRUE" : "FALSE"}
+          </p>
+        </div>
+      ) : (
+        <div className="p-5 bg-green-500 ">
+          <p className="text-2xl font-bold">
+            Toxic: {data.toxic ? "TRUE" : "FALSE"}
+          </p>
+        </div>
+      )}
+      {data.obscene ? (
+        <div className="p-5 bg-red-800 ">
+          <p className="text-2xl font-bold ">
+            Obscene: {data.obscene ? "TRUE" : "FALSE"}
+          </p>
+        </div>
+      ) : (
+        <div className="p-5 bg-green-500">
+          <p className="text-2xl font-bold ">
+            Obscene: {data.obscene ? "TRUE" : "FALSE"}
+          </p>
+        </div>
+      )}
+      {data.threat ? (
+        <div className="p-5 bg-red-800">
+          <p className="text-2xl font-bold ">
+            Threat: {data.threat ? "TRUE" : "FALSE"}
+          </p>
+        </div>
+      ) : (
+        <div className="p-5 bg-green-500">
+          <p className="text-2xl font-bold ">
+            Threat: {data.threat ? "TRUE" : "FALSE"}
+          </p>
+        </div>
+      )}
+      {data.identity_hate ? (
+        <div className="p-5 bg-red-800">
+          <p className="text-2xl font-bold ">
+            Identity Hate: {data.identity_hate ? "TRUE" : "FALSE"}
+          </p>
+        </div>
+      ) : (
+        <div className="p-5 bg-green-500 ">
+          <p className="text-2xl font-bold ">
+            Identity Hate: {data.identity_hate ? "TRUE" : "FALSE"}
+          </p>
+        </div>
+      )}
+      {data.insult ? (
+        <div className="p-5 bg-red-800">
+          <p className="text-2xl font-bold">
+            Insult: {data.insult ? "TRUE" : "FALSE"}
+          </p>
+        </div>
+      ) : (
+        <div className="p-5 bg-green-500">
+          <p className="text-2xl font-bold">
+            Insult: {data.insult ? "TRUE" : "FALSE"}
+          </p>
+        </div>
+      )}
+
       {data.insult ||
       data.identity_hate ||
       data.threat ||
@@ -52,6 +94,63 @@ const OutputBox = ({ data }) => {
                   communication.
                 </p>
               </div>
+            )}
+          {data.insult &&
+            !data.toxic &&
+            !data.obscene &&
+            !data.threat &&
+            !data.identity_hate && (
+              <div className="mt-5">
+                <p className="text-lg">Insulting people</p>
+              </div>
+            )}
+          {data.identity_hate &&
+            !data.toxic &&
+            !data.obscene &&
+            !data.threat &&
+            !data.insult && (
+              <>
+                <div className="mt-5">
+                  <p className="text-lg">identity Hate</p>
+                </div>
+              </>
+            )}
+          {data.obscene &&
+            !data.toxic &&
+            !data.threat &&
+            !data.insult &&
+            !data.identity_hate && (
+              <div className="mt-5">
+                <p className="text-lg">
+                  Obscene words typically elicit strong negative reactions from
+                  people, including shock, offense, and disgust. Such language
+                  can be deeply offensive, disrespectful, and hurtful.
+                  Individuals may respond with anger, outrage, or a desire to
+                  distance themselves from the situation. It can damage
+                  relationships, erode trust, and create a hostile environment.
+                  Promoting respectful and considerate communication is
+                  essential for fostering understanding and maintaining healthy
+                  interactions.
+                </p>
+              </div>
+            )}
+          {data.threat &&
+            !data.toxic &&
+            !data.obscene &&
+            !data.insult &&
+            !data.identity_hate && (
+              <>
+                <div className="mt-5">
+                  <p className="text-lg">
+                    When faced with a threat, people react with fear, anxiety,
+                    and a heightened sense of danger. They may take immediate
+                    steps to ensure their safety, report the threat, or seek
+                    support from others. Threats create a climate of
+                    vulnerability and require serious attention to prioritize
+                    personal well-being and security.
+                  </p>
+                </div>
+              </>
             )}
           {data.toxic &&
             data.obscene &&
@@ -94,7 +193,6 @@ const OutputBox = ({ data }) => {
             )}
           {data.toxic &&
             data.identity_hate &&
-            data.toxic &&
             !data.obscene &&
             !data.threat &&
             !data.insult && (
@@ -118,7 +216,6 @@ const OutputBox = ({ data }) => {
             )}
           {data.toxic &&
             data.insult &&
-            data.toxic &&
             !data.obscene &&
             !data.threat &&
             !data.identity_hate && (
@@ -133,21 +230,17 @@ const OutputBox = ({ data }) => {
               </div>
             )}
           {data.obscene &&
+            data.insult &&
             !data.toxic &&
             !data.threat &&
-            !data.insult &&
             !data.identity_hate && (
               <div className="mt-5">
                 <p className="text-lg">
-                  Obscene words typically elicit strong negative reactions from
-                  people, including shock, offense, and disgust. Such language
-                  can be deeply offensive, disrespectful, and hurtful.
-                  Individuals may respond with anger, outrage, or a desire to
-                  distance themselves from the situation. It can damage
-                  relationships, erode trust, and create a hostile environment.
-                  Promoting respectful and considerate communication is
-                  essential for fostering understanding and maintaining healthy
-                  interactions.
+                  Combining obscene language with insults can evoke strong
+                  negative reactions, such as anger, hurt, and humiliation. It
+                  damages relationships, promotes conflict, and diminishes
+                  self-esteem. Fostering respectful and constructive dialogue is
+                  essential for healthy communication and positive interactions.
                 </p>
               </div>
             )}
@@ -196,24 +289,6 @@ const OutputBox = ({ data }) => {
               </div>
             )}
           {data.threat &&
-            !data.toxic &&
-            !data.obscene &&
-            !data.insult &&
-            !data.identity_hate && (
-              <>
-                <div className="mt-5">
-                  <p className="text-lg">
-                    When faced with a threat, people react with fear, anxiety,
-                    and a heightened sense of danger. They may take immediate
-                    steps to ensure their safety, report the threat, or seek
-                    support from others. Threats create a climate of
-                    vulnerability and require serious attention to prioritize
-                    personal well-being and security.
-                  </p>
-                </div>
-              </>
-            )}
-          {data.threat &&
             data.insult &&
             !data.toxic &&
             !data.obscene &&
@@ -251,6 +326,26 @@ const OutputBox = ({ data }) => {
                 </div>
               </>
             )}
+          {data.insult &&
+            data.identity_hate &&
+            !data.toxic &&
+            !data.obscene &&
+            !data.threat && (
+              <>
+                <div className="mt-5">
+                  <p className="text-lg">
+                    Combining insults with identity-based hate is an extremely
+                    harmful and damaging combination. It instills fear,
+                    perpetuates discrimination, and undermines the well-being of
+                    individuals based on their identity. It creates a toxic
+                    environment that threatens personal safety and contributes
+                    to marginalization. It is crucial to address and confront
+                    such behavior to ensure the safety and dignity of all
+                    individuals involved.
+                  </p>
+                </div>
+              </>
+            )}
           {data.toxic &&
             data.obscene &&
             data.threat &&
@@ -270,6 +365,33 @@ const OutputBox = ({ data }) => {
                 </div>
               </>
             )}
+          {!data.obscene &&
+            !data.insult &&
+            data.threat &&
+            data.toxic &&
+            data.identity_hate && (
+              <>
+                <div className="mt-5">
+                  <p className="text-lg">
+                    Combining toxic language, threats, and obscene words is an
+                  </p>
+                </div>
+              </>
+            )}
+          {!data.obscene &&
+            !data.identity_hate &&
+            data.toxic &&
+            data.threat &&
+            data.insult && (
+              <>
+                <div className="mt-5">
+                  <p className="text-lg">
+                    Combining toxic language, threats, and obscene words is an
+                  </p>
+                </div>
+              </>
+            )}
+
           {data.toxic &&
             data.obscene &&
             data.insult &&
@@ -298,40 +420,6 @@ const OutputBox = ({ data }) => {
                   <p className="text-lg">
                     Combining toxic, obscene, and identity-based hate speech is
                     highly damaging and reprehensible.
-                  </p>
-                </div>
-              </>
-            )}
-          {data.toxic &&
-            data.obscene &&
-            data.identity_hate &&
-            data.insult &&
-            data.toxic &&
-            !data.threat && (
-              <>
-                <>
-                  {" "}
-                  <div className="mt-5">
-                    <p className="text-lg">
-                      Combining toxic ,insults, obscene language, and
-                      identity-based hate is an abhorrent and harmful
-                      combination.
-                    </p>
-                  </div>
-                </>
-              </>
-            )}
-          {data.toxic &&
-            data.identity_hate &&
-            data.obscene &&
-            data.insult &&
-            data.threat && (
-              <>
-                {" "}
-                <div className="mt-5">
-                  <p className="text-lg">
-                    This contains all of negative aspects so it can be more
-                    harmful people get angry ,may damage relationships,
                   </p>
                 </div>
               </>
@@ -370,6 +458,36 @@ const OutputBox = ({ data }) => {
                 </div>
               </>
             )}
+          {!data.obscene &&
+            !data.threat &&
+            data.identity_hate &&
+            data.toxic &&
+            data.insult && (
+              <>
+                {" "}
+                <div className="mt-5">
+                  <p className="text-lg">
+                    Combining toxic language, insults, and identity-based hate
+                    is an extremely harmful and damaging combination. It
+                  </p>
+                </div>
+              </>
+            )}
+          {!data.toxic &&
+            !data.threat &&
+            data.identity_hate &&
+            data.obscene &&
+            data.insult && (
+              <>
+                {" "}
+                <div className="mt-5">
+                  <p className="text-lg">
+                    Combining toxic language, insults, and identity-based hate
+                    is an extremely harmful and damaging combination. It
+                  </p>
+                </div>
+              </>
+            )}
           {data.threat &&
             data.insult &&
             data.identity_hate &&
@@ -389,6 +507,7 @@ const OutputBox = ({ data }) => {
                 </div>
               </>
             )}
+          {}
           {data.toxic &&
             data.obscene &&
             data.threat &&
@@ -420,6 +539,75 @@ const OutputBox = ({ data }) => {
                     dangerous mixture. It represents an extreme form of toxicity
                     that dehumanizes and targets individuals based on their
                     identity while using explicit and derogatory language.
+                  </p>
+                </div>
+              </>
+            )}
+          {data.toxic &&
+            data.threat &&
+            data.insult &&
+            data.identity_hate &&
+            !data.obscene && (
+              <>
+                {" "}
+                <div className="mt-5">
+                  <p className="text-lg">
+                    The combination of obscene insults, threats, and
+                    identity-based hate is an utterly reprehensible and
+                    dangerous mixture. It represents an extreme form of toxicity
+                    that dehumanizes and targets individuals based on their
+                    identity while using explicit and derogatory language.
+                  </p>
+                </div>
+              </>
+            )}
+          {data.toxic &&
+            data.obscene &&
+            data.identity_hate &&
+            data.insult &&
+            !data.threat && (
+              <>
+                <>
+                  {" "}
+                  <div className="mt-5">
+                    <p className="text-lg">
+                      Combining toxic ,insults, obscene language, and
+                      identity-based hate is an abhorrent and harmful
+                      combination.
+                    </p>
+                  </div>
+                </>
+              </>
+            )}
+          {data.toxic &&
+            data.threat &&
+            data.insult &&
+            data.obscene &&
+            !data.identity_hate && (
+              <>
+                {" "}
+                <div className="mt-5">
+                  <p className="text-lg">
+                    The combination of obscene insults, threats, and
+                    identity-based hate is an utterly reprehensible and
+                    dangerous mixture. It represents an extreme form of toxicity
+                    that dehumanizes and targets individuals based on their
+                    identity while using explicit and derogatory language.
+                  </p>
+                </div>
+              </>
+            )}
+          {data.toxic &&
+            data.identity_hate &&
+            data.obscene &&
+            data.insult &&
+            data.threat && (
+              <>
+                {" "}
+                <div className="mt-5">
+                  <p className="text-lg">
+                    This contains all of negative aspects so it can be more
+                    harmful people get angry ,may damage relationships,
                   </p>
                 </div>
               </>
