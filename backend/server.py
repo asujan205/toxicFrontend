@@ -35,11 +35,14 @@ def score_comment():
     vectorized_comment = vectorizer([comment])
     results = model.predict(vectorized_comment)
     
-    text = ''
+    # text = ''
+    # for idx, col in enumerate(df.columns[2:]):
+    #     text += '{}: {}'.format(col, results[0][idx] > 0.5)
+    result_object = {}
     for idx, col in enumerate(df.columns[2:]):
-        text += '{}: {}\n'.format(col, results[0][idx] > 0.5)
-    
-    return jsonify({'result': text})
+        result_object[col] = bool(results[0][idx] > 0.5)
+
+    return jsonify({'result': result_object})
     # comment = request.json['comment']
     
     # # Execute the Python script and capture the output

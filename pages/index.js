@@ -1,8 +1,8 @@
 import Head from "next/head";
 import Image from "next/image";
 import styles from "../styles/Home.module.css";
-import InputBox from "../components/inputbox";
-import OutputBox from "../components/outputbox";
+import InputBox from "../components/inputbox.js";
+import OutputBox from "../components/outputbox.js";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
@@ -18,7 +18,7 @@ export default function Home() {
     axios
       .post("http://localhost:5000/score-comment", { comment })
       .then((response) => {
-        setOutput(response.data.result);
+        setOutput(response.data);
 
         // Handle the response data as needed
       })
@@ -40,8 +40,8 @@ export default function Home() {
           handleComment={handleComment}
           handleInputChange={handleInputChange}
         />
+        {output}
         {output && <OutputBox data={output} />}
-        {/* <OutputBox data={output} /> */}
       </div>
     </>
   );
