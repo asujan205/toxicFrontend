@@ -34,7 +34,7 @@ export default function Home() {
   console.log(output);
   return (
     <>
-      <div className="flex flex-row   flex-wrap justify-evenly min-h-screen py-2 w-full ">
+      <div className="flex flex-row   flex-wrap justify-evenly  py-2 w-full ">
         <InputBox
           Comments={comment}
           handleComment={handleComment}
