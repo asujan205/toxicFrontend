@@ -9,7 +9,8 @@ import gradio as gr
 from tensorflow.keras.layers import TextVectorization
 
 # %%
-model = tf.keras.models.load_model('hate_detection.h5')
+model = tf.keras.models.load_model(os.path.join('data', 'hate_detection.h5'))
+
 
 # %%
 df = pd.read_csv(
