@@ -140,6 +140,134 @@ const OutputBox = ({ data }) => {
               </div>
             </>
           )}
+          {data.obscene && data.identity_hate && (
+            <div className="mt-5">
+              <p className="text-lg">
+                When obscene language is combined with identity-based hate, it
+                triggers highly damaging reactions. People targeted by this
+                toxic combination often experience profound distress, shame, and
+                a sense of being dehumanized. It reinforces harmful stereotypes,
+                perpetuates discrimination, and further marginalizes individuals
+                based on their race, ethnicity, gender, sexual orientation, or
+                other aspects of their identity. The consequences can include
+                emotional trauma, diminished self-worth, and an erosion of trust
+                within communities. Promoting empathy, tolerance, and inclusive
+                dialogue is crucial to combating such harmful behavior and
+                fostering a more compassionate society.
+              </p>
+            </div>
+          )}
+          {data.threat && (
+            <>
+              When faced with a threat, people react with fear, anxiety, and a
+              heightened sense of danger. They may take immediate steps to
+              ensure their safety, report the threat, or seek support from
+              others. Threats create a climate of vulnerability and require
+              serious attention to prioritize personal well-being and security.
+            </>
+          )}
+          {data.threat && data.insult && (
+            <>
+              Combining threats with insults creates an extremely toxic and
+              harmful situation. It elicits strong negative reactions from
+              people, including fear, anger, and hurt. Threats undermine
+              personal safety and well-being, while insults demean and belittle
+              individuals, damaging their self-esteem.
+            </>
+          )}
+          {data.threat && data.identity_hate && (
+            <>
+              Combining threats with identity-based hate is an extremely
+              dangerous and damaging combination. It instills fear, perpetuates
+              discrimination, and undermines the well-being of individuals based
+              on their identity. It creates a toxic environment that threatens
+              personal safety and contributes to marginalization. It is crucial
+              to address and confront such behavior to ensure the safety and
+              dignity of all individuals involved.
+            </>
+          )}
+          {data.toxic && data.obscene && data.threat && (
+            <>
+              Combining toxic language, threats, and obscene words is an
+              incredibly harmful and alarming combination. It generates intense
+              negative reactions, including fear, disgust, and a sense of
+              personal safety being compromised. This toxic mix erodes trust,
+              promotes hostility, and can cause severe emotional distress
+            </>
+          )}
+          {data.toxic && data.obscene && data.insult && (
+            <>
+              Combining toxic, obscene, and insulting language creates an
+              extremely offensive and harmful situation. Such behavior evokes
+              strong negative reactions, including anger, hurt, and a sense of
+              degradation
+            </>
+          )}
+          {data.toxic && data.obscene && data.identity_hate && (
+            <>
+              Combining toxic, obscene, and identity-based hate speech is highly
+              damaging and reprehensible.
+            </>
+          )}
+          {data.toxic && data.obscene && data.identity_hate && data.insult && (
+            <>
+              <>
+                Combining toxic ,insults, obscene language, and identity-based
+                hate is an abhorrent and harmful combination.
+              </>
+            </>
+          )}
+          {data.toxic &&
+            data.identity_hate &&
+            data.obscene &&
+            data.insult &&
+            data.threat && (
+              <>
+                This contains all of negative aspects so it can be more harmful
+                people get angry ,may damage relationships,
+              </>
+            )}
+          {data.obscene && data.threat && data.insult && (
+            <>
+              Combining obscene language, threats, and insults is an extremely
+              dangerous and reprehensible combination. It creates an environment
+              of fear, degradation, and personal safety being compromised
+            </>
+          )}
+          {data.obscene && data.threat && data.identity_hate && (
+            <>
+              Combining obscene language, threats, and indentity_hate is an
+              extremely dangerous and reprehensible combination. It creates an
+              environment of fear, degradation, and personal safety being
+              compromised
+            </>
+          )}
+          {data.threat && data.insult && data.identity_hate && (
+            <>
+              Combining threats, insults, and identity-based hate is an utterly
+              reprehensible and harmful combination. It instills fear,
+              perpetuates discrimination, and dehumanizes individuals based on
+              their identity. This toxic blend of behavior creates an
+              environment of intimidation, hostility, and marginalization.
+            </>
+          )}
+          {data.toxic && data.obscene && data.threat && data.identity_hate && (
+            <>
+              Combining toxic, obscene language, threats, and identity-based
+              hate is an extremely harmful and deplorable combination. It
+              displays a complete disregard for empathy, respect, and basic
+              human dignity.
+            </>
+          )}
+          {data.obscene && data.threat && data.insult && data.identity_hate && (
+            <>
+              The combination of obscene insults, threats, and identity-based
+              hate is an utterly reprehensible and dangerous mixture. It
+              represents an extreme form of toxicity that dehumanizes and
+              targets individuals based on their identity while using explicit
+              and derogatory language.
+            </>
+          )}
         </div>
       ) : (
         <div className="flex flex-col bg-green-500 text-white p-5 min-h-[400px] mt-5">
