@@ -23,12 +23,14 @@ y = df[df.columns[2:]].values
 # %%
 MAX_FEATURES = 200000
 
+
 # %%
 vectorizer = TextVectorization(max_tokens=MAX_FEATURES,
                                output_sequence_length=1800,
                                output_mode='int')
 
 # %%
+X = X.fillna('') # Replace missing values with empty strings
 vectorizer.adapt(X.values)
 
 # %%
@@ -43,3 +45,5 @@ def score_comment(comment):
     return text
 
 
+
+# %%
