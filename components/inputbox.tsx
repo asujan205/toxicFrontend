@@ -1,7 +1,29 @@
 import React, { useState, useEffect } from "react";
+import axios from "axios";
 
 const InputBox = () => {
   const [Loading, setLoading] = useState(false);
+  const [comment, setComment] = useState("");
+
+  const handleComment = () => {
+    console.log(comment);
+    setLoading(true);
+
+    // Make the API call to the Flask server
+    axios
+      .post("http://localhost:5000/score-comment", { comment })
+      .then((response) => {
+        console.log(response.data);
+        // Handle the response data as needed
+      })
+      .catch((error) => {
+        console.error(error);
+        // Handle any errors that occur during the API call
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  };
   return (
     <>
       <div className="flex   flex-col  min-w-[500px] min-h-[500px] m-10 border  border-solid rounded-xl		 border-cyan-500">
@@ -14,10 +36,15 @@ const InputBox = () => {
             rows="1"
             className="block mx-4    p-2.5 w-full min-h-[500px] mt-4 mb-4 text-sm text-gray-900 bg-white rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             placeholder="Check for Toxicity"
+            value={comment}
+            onChange={(e) => setComment(e.target.value)}
           ></textarea>
         </div>
         <div className="flex flex-row justify-between m-3">
           <button
+            onClick={() => {
+              handleComment();
+            }}
             type="button"
             className="text-white bg-[#FF9119] hover:bg-[#FF9119]/80 focus:ring-4  mt-5 focus:outline-none focus:ring-[#FF9119]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:hover:bg-[#FF9119]/80 dark:focus:ring-[#FF9119]/40 mr-2 mb-2"
           >
@@ -42,6 +69,9 @@ const InputBox = () => {
           </button>
           <button
             type="button"
+            onClick={() => {
+              setComment("");
+            }}
             className="text-white bg-[#a02e41] hover:bg-[#a02e41]/80 focus:ring-4  mt-5 focus:outline-none focus:ring-[#a02e41]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:hover:bg-[#a02e41]/80 dark:focus:ring-[#a02e41]/40 mr-2 mb-2"
           >
             Clear Text

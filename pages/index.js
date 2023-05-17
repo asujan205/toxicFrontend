@@ -9,7 +9,7 @@ import axios from "axios";
 export default function Home() {
   return (
     <>
-      <div className="flex flex-row  justify-evenly min-h-screen py-2 w-full ">
+      <div className="flex flex-row   flex-wrap justify-evenly min-h-screen py-2 w-full ">
         <InputBox />
 
         <OutputBox />
