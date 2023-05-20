@@ -58,7 +58,7 @@ def score_romanized_comment():
     
     # Preprocessing code
     model = tf.keras.models.load_model(os.path.join('data', 'romanizedd.h5'))
-    df = pd.read_csv(os.path.join('data', 'modified_dataset.csv'))
+    df = pd.read_csv(os.path.join('data', 'train3.csv'))
     X = df['comment_text'].fillna('')
     Y = df[df.columns[2:]].values
     MAX_FEATURES = 200000
