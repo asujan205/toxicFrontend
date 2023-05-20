@@ -5,23 +5,29 @@ import InputBox from "../components/inputbox.js";
 import OutputBox from "../components/outputbox.js";
 import { useState, useEffect } from "react";
 import axios from "axios";
-// import SwipeableViews from "react-swipeable-views";
+import * as React from "react";
+import SwipeableViews from "react-swipeable-views";
 import { useTheme } from "@mui/material/styles";
 import AppBar from "@mui/material/AppBar";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
+import RominputBox from "../components/romanizedbox";
 
 export default function Home() {
   const [comment, setComments] = useState("");
   const [output, setOutput] = useState();
   const [disabled, setDisabled] = useState(false);
   const theme = useTheme();
-  const [value, setValue] = useState(0);
+  const [value, setValue] = React.useState(0);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
+  };
+
+  const handleChangeIndex = (index) => {
+    setValue(index);
   };
   const handleInputChange = (e) => {
     setComments(e.target.value);
@@ -32,6 +38,26 @@ export default function Home() {
     // Make the API call to the Flask server
     axios
       .post("http://localhost:5000/score-comment", { comment })
+      .then((response) => {
+        setOutput(response.data);
+
+        // Handle the response data as needed
+      })
+      .catch((error) => {
+        console.error(error);
+        // Handle any errors that occur during the API call
+      })
+      .finally(() => {
+        setDisabled(false);
+        // setLoading(false);
+      });
+  };
+  const handleRomanizedComment = () => {
+    setDisabled(true);
+    console.log(comment);
+    // Make the API call to the Flask server
+    axios
+      .post("http://localhost:5000/score-romanized-comment", { comment })
       .then((response) => {
         setOutput(response.data);
 
@@ -58,7 +84,7 @@ export default function Home() {
         </div>
       </nav>
       <div className="flex flex-row   flex-wrap justify-evenly  py-2 w-full ">
-        <Box sx={{ bgcolor: "background.paper", width: 500 }}>
+        <Box sx={{ bgcolor: "background.paper", width: 600 }}>
           <AppBar position="static">
             <Tabs
               value={value}
@@ -68,34 +94,39 @@ export default function Home() {
               variant="fullWidth"
               aria-label="full width tabs example"
             >
-              <Tab label="English" />
-              <Tab label="Romanized" />
+              <Tab label="English" {...a11yProps(0)} />
+              <Tab label="Romanized" {...a11yProps(1)} />
             </Tabs>
           </AppBar>
-
-          <TabPanel value={value} index={0} dir={theme.direction}>
-            <InputBox
-              Comments={comment}
-              handleComment={handleComment}
-              handleInputChange={handleInputChange}
-              disabled={disabled}
-            />
-          </TabPanel>
-          <TabPanel value={value} index={1} dir={theme.direction}>
-            <InputBox
-              Comments={comment}
-              handleComment={handleComment}
-              handleInputChange={handleInputChange}
-              disabled={disabled}
-            />
-          </TabPanel>
+          <SwipeableViews
+            axis={theme.direction === "rtl" ? "x-reverse" : "x"}
+            index={value}
+            onChangeIndex={handleChangeIndex}
+          >
+            <TabPanel value={value} index={0} dir={theme.direction}>
+              <InputBox
+                Comments={comment}
+                handleComment={handleComment}
+                handleInputChange={handleInputChange}
+                disabled={disabled}
+              />
+            </TabPanel>
+            <TabPanel value={value} index={1} dir={theme.direction}>
+              <RominputBox
+                Comments={comment}
+                handleComment={handleRomanizedComment}
+                handleInputChange={handleInputChange}
+                disabled={disabled}
+              />
+            </TabPanel>
+          </SwipeableViews>
         </Box>
-        <InputBox
+        {/* <InputBox
           Comments={comment}
           handleComment={handleComment}
           handleInputChange={handleInputChange}
           disabled={disabled}
-        />
+        /> */}
 
         {output && <OutputBox data={output} />}
       </div>
@@ -123,15 +154,9 @@ function TabPanel(props) {
   );
 }
 
-// export default function FullWidthTabs() {
-//   const theme = useTheme();
-//   const [value, setValue] = useState(0);
-
-//   const handleChange = (event, newValue) => {
-//     setValue(newValue);
-//   };
-
-//   return (
-
-//   );
-// }
+function a11yProps(index) {
+  return {
+    id: `full-width-tab-${index}`,
+    "aria-controls": `full-width-tabpanel-${index}`,
+  };
+}

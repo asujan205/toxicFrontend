@@ -1,7 +1,12 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-const InputBox = ({ Comment, handleComment, handleInputChange, disabled }) => {
+const RominputBox = ({
+  Comment,
+  handleComment,
+  handleInputChange,
+  disabled,
+}) => {
   const [Loading, setLoading] = useState(false);
 
   return (
@@ -15,7 +20,7 @@ const InputBox = ({ Comment, handleComment, handleInputChange, disabled }) => {
             id="chat"
             rows="1"
             className="block mx-4    p-2.5 w-full min-h-[500px] mt-4 mb-4 text-sm text-gray-900 bg-white rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-            placeholder="Check for Toxicity"
+            placeholder="Check  Toxicity For Romanized Text"
             value={Comment}
             onChange={handleInputChange}
           ></textarea>
@@ -40,7 +45,7 @@ const InputBox = ({ Comment, handleComment, handleInputChange, disabled }) => {
               className="text-gray cursor-not-allowed font-medium rounded-lg text-sm px-5 py-2.5 text-center"
               disabled
             >
-              Check For Toxicity In Romanized Text
+              Check For Toxicity
             </button>
           )}
 
@@ -57,4 +62,4 @@ const InputBox = ({ Comment, handleComment, handleInputChange, disabled }) => {
   );
 };
 
-export default InputBox;
+export default RominputBox;
