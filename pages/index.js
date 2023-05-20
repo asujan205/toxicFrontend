@@ -94,8 +94,8 @@ export default function Home() {
               variant="fullWidth"
               aria-label="full width tabs example"
             >
-              <Tab label="English" {...a11yProps(0)} />
-              <Tab label="Romanized" {...a11yProps(1)} />
+              <Tab label="English" {...a11yProps(0)} disabled={disabled} />
+              <Tab label="Romanized" {...a11yProps(1)} disabled={disabled} />
             </Tabs>
           </AppBar>
           <SwipeableViews
@@ -103,7 +103,12 @@ export default function Home() {
             index={value}
             onChangeIndex={handleChangeIndex}
           >
-            <TabPanel value={value} index={0} dir={theme.direction}>
+            <TabPanel
+              value={value}
+              index={0}
+              dir={theme.direction}
+              disabled={disabled}
+            >
               <InputBox
                 Comments={comment}
                 handleComment={handleComment}
@@ -111,7 +116,12 @@ export default function Home() {
                 disabled={disabled}
               />
             </TabPanel>
-            <TabPanel value={value} index={1} dir={theme.direction}>
+            <TabPanel
+              value={value}
+              index={1}
+              dir={theme.direction}
+              disabled={disabled}
+            >
               <RominputBox
                 Comments={comment}
                 handleComment={handleRomanizedComment}

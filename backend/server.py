@@ -52,6 +52,43 @@ def score_comment():
     # # Here, we assume the result is a plain text response
     
     # return jsonify({'result': result.decode('utf-8')})
+@app.route('/score-romanized-comment', methods=['POST'])
+def score_romanized_comment():
+    comment = request.json['comment']
+    
+    # Preprocessing code
+    model = tf.keras.models.load_model(os.path.join('data', 'romanizedd.h5'))
+    df = pd.read_csv(os.path.join('data', 'modified_dataset.csv'))
+    X = df['comment_text'].fillna('')
+    Y = df[df.columns[2:]].values
+    MAX_FEATURES = 200000
+    vectorizer = TextVectorization(
+        max_tokens=MAX_FEATURES,
+        output_sequence_length=1800,
+        output_mode='int'
+    )
+    vectorizer.adapt(X.values)
+    
+    vectorized_comment = vectorizer([comment])
+    results = model.predict(vectorized_comment)
+    
+    # text = ''
+    # for idx, col in enumerate(df.columns[2:]):
+    #     text += '{}: {}'.format(col, results[0][idx] > 0.5)
+    result_object = {}
+    for idx, col in enumerate(df.columns[1:]):
+        result_object[col] = bool(results[0][idx] > 0.5)
+
+    return result_object
+    # comment = request.json['comment']
+    
+    # # Execute the Python script and capture the output
+    # result = subprocess.check_output(['python', 'hate_detection.py', comment])
+    
+    # # Process the result as needed
+    # # Here, we assume the result is a plain text response
+    
+    # return jsonify({'result': result.decode('utf-8')})
 
 if __name__ == '__main__':
     app.run()
