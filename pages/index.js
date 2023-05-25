@@ -32,26 +32,26 @@ export default function Home() {
   const handleInputChange = (e) => {
     setComments(e.target.value);
   };
-  const handleComment = () => {
-    setDisabled(true);
-    console.log(comment);
-    // Make the API call to the Flask server
-    axios
-      .post("http://localhost:5000/score-comment", { comment })
-      .then((response) => {
-        setOutput(response.data);
+  // const handleComment = () => {
+  //   setDisabled(true);
+  //   console.log(comment);
+  //   // Make the API call to the Flask server
+  //   axios
+  //     .post("http://localhost:5000/score-comment", { comment })
+  //     .then((response) => {
+  //       setOutput(response.data);
 
-        // Handle the response data as needed
-      })
-      .catch((error) => {
-        console.error(error);
-        // Handle any errors that occur during the API call
-      })
-      .finally(() => {
-        setDisabled(false);
-        // setLoading(false);
-      });
-  };
+  //       // Handle the response data as needed
+  //     })
+  //     .catch((error) => {
+  //       console.error(error);
+  //       // Handle any errors that occur during the API call
+  //     })
+  //     .finally(() => {
+  //       setDisabled(false);
+  //       // setLoading(false);
+  //     });
+  // };
   const handleRomanizedComment = () => {
     setDisabled(true);
     console.log(comment);
@@ -76,10 +76,10 @@ export default function Home() {
   console.log(output);
   return (
     <>
-      <nav class="flex items-center justify-between flex-wrap bg-teal-500 p-6">
+      <nav class="flex items-center justify-between flex-wrap bg-teal-500 p-6 ">
         <div class="flex items-center justify-center flex-shrink-0 text-white mr-6">
           <span class="font-semibold text-xl tracking-tight">
-            Toxicity Analyzer
+            Toxicity Analyzer 
           </span>
         </div>
       </nav>
@@ -94,8 +94,8 @@ export default function Home() {
               variant="fullWidth"
               aria-label="full width tabs example"
             >
-              <Tab label="English" {...a11yProps(0)} disabled={disabled} />
-              <Tab label="Romanized" {...a11yProps(1)} disabled={disabled} />
+              {/* <Tab label="English" {...a11yProps(0)} disabled={disabled} /> */}
+              <Tab label="Romanized" {...a11yProps(0)} disabled={disabled} />
             </Tabs>
           </AppBar>
           <SwipeableViews
@@ -103,7 +103,7 @@ export default function Home() {
             index={value}
             onChangeIndex={handleChangeIndex}
           >
-            <TabPanel
+            {/* <TabPanel
               value={value}
               index={0}
               dir={theme.direction}
@@ -115,10 +115,10 @@ export default function Home() {
                 handleInputChange={handleInputChange}
                 disabled={disabled}
               />
-            </TabPanel>
+            </TabPanel> */}
             <TabPanel
               value={value}
-              index={1}
+              index={0}
               dir={theme.direction}
               disabled={disabled}
             >

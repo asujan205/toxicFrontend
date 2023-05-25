@@ -7,7 +7,6 @@ import numpy as np
 import tensorflow as tf
 import gradio as gr
 from tensorflow.keras.layers import TextVectorization
-
 # %%
 model = tf.keras.models.load_model(os.path.join('data', 'hate_detection.h5'))
 
